@@ -11,6 +11,10 @@ public class PrintAllUsersCommand implements Command {
         this.userRepository = UserRepositoryImpl.getInstance();
     }
 
+    public PrintAllUsersCommand(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public void execute() {
         userRepository.getAll().forEach(System.out::println);
     }

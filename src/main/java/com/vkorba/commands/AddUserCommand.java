@@ -13,6 +13,11 @@ public class AddUserCommand implements Command {
         this.userName = userName;
     }
 
+    public AddUserCommand(UserRepository userRepository, String userName) {
+        this.userRepository = userRepository;
+        this.userName = userName;
+    }
+
     public void execute() {
         userRepository.save(userName);
         System.out.printf("User added: %s%n", userName);

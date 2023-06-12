@@ -11,6 +11,10 @@ public class DeleteAllUsersCommand implements Command {
         this.userRepository = UserRepositoryImpl.getInstance();
     }
 
+    public DeleteAllUsersCommand(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public void execute() {
         userRepository.deleteAll();
         System.out.println("All Users deleted.");
