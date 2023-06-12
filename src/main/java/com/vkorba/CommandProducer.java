@@ -26,7 +26,7 @@ public class CommandProducer implements Runnable {
 //        } while (!Thread.currentThread().isInterrupted());
     }
 
-    private synchronized void produceCommands() {
+    private void produceCommands() {
         try {
             addToQueue(new AddUserCommand("John"), EXECUTION_INDEX);
             addToQueue(new AddUserCommand("Michael"), EXECUTION_INDEX);
@@ -40,7 +40,7 @@ public class CommandProducer implements Runnable {
         }
     }
 
-    private synchronized void addToQueue(Command command, int executions) throws InterruptedException {
+    private void addToQueue(Command command, int executions) throws InterruptedException {
         if (!commandQueue.offer(command, MILLIS_EXECUTION_TIMEOUT, TimeUnit.MILLISECONDS)) {
             var failedCommand = commandQueue.poll();
             if (executions < RETRY_LIMIT) {
